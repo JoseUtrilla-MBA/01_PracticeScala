@@ -1,4 +1,4 @@
-package funsets
+package week2.funsets
 
 object Main extends App {
   import FunSets._

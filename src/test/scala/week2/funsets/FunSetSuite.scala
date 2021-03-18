@@ -1,7 +1,8 @@
 package week2.funsets
 
-import funsets.FunSets._
+
 import org.scalatest.{FlatSpec, Matchers}
+import week2.funsets.FunSets._
 
 class FunSetSuite extends FlatSpec with Matchers {
 

@@ -1,4 +1,6 @@
-package funsets
+package week2.funsets
+
+import funsets.FunSetsInterface
 
 /**
  * 2. Purely Functional Sets.
