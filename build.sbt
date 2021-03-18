@@ -1,4 +1,4 @@
-name := "Week2_v01_PracticeScala"
+name := "Practices_Scala"
 
 version := "0.1"
 
