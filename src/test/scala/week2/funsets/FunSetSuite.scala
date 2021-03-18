@@ -1,10 +1,11 @@
-package funsets
+package week2.funsets
 
+import funsets.FunSets._
 import org.scalatest.{FlatSpec, Matchers}
 
 class FunSetSuite extends FlatSpec with Matchers {
 
-  import FunSets._
+
 
   val s1 = singletonSet(1)
   val s2 = singletonSet(2)

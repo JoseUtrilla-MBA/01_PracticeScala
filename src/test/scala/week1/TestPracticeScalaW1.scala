@@ -1,5 +1,7 @@
-import PracticeW1._
+package week1
+
 import org.scalatest._
+import week1.PracticeW1._
 
 
 class TestPracticeScalaW1 extends FlatSpec with Matchers {
