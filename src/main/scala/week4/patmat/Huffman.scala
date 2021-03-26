@@ -1,6 +1,6 @@
 package week4.patmat
 
-import week4.patmat.Huffman.makeOrderedLeafList
+import week4.patmat.Huffman.{makeCodeTree, makeOrderedLeafList}
 
 /**
  * A huffman code is represented by a binary tree.
@@ -101,7 +101,7 @@ trait Huffman extends HuffmanInterface {
         else performanceLeaf(freqs.tail, Leaf(freqs.head._1, freqs.head._2) :: leafs)
       }
 
-      performanceLeaf(freqs, Nil)
+      performanceLeaf(freqs, Nil).sortBy(f => f.weight)
     }
   }
 
@@ -225,6 +225,10 @@ object some extends App {
   val pairs = List(('a', 2), ('z', 5), ('f', 8))
   val leafs = makeOrderedLeafList(pairs)
   println(leafs)
+
+
+  val sampleTree = makeCodeTree(makeCodeTree(Leaf('x', 1), Leaf('e', 1)), Leaf('t', 2))
+  println(sampleTree)
 }
 
 object Huffman extends Huffman
