@@ -11,27 +11,27 @@ class HuffmanSuite extends FlatSpec with Matchers {
   val t2 = Fork(Fork(Leaf('a', 2), Leaf('b', 3), List('a', 'b'), 5), Leaf('d', 4), List('a', 'b', 'd'), 9)
 
 
-  "weight of a larger tree " should "" in {
+  "weight of a larger tree " should " return 5 " in {
     assert(5 == weight(t1))
   }
 
-  "chars of a larger tree" should "" in {
+  "chars of t2 tree" should " must be: a, b, d" in {
     assert(List('a', 'b', 'd') == chars(t2))
   }
-  "string2chars hello world" should "" in {
+  "string2chars hello world" should " be as a List of each character that make up this String" in {
     assert(List('h', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd') == string2Chars("hello, world"))
   }
 
-  "make ordered leaf list for some frequency table" should "" in {
+  "make ordered leaf list for some frequency table" should " be sorted by weight of leaf" in {
     assert(List(Leaf('e', 1), Leaf('t', 2), Leaf('x', 3)) == makeOrderedLeafList(List(('t', 2), ('e', 1), ('x', 3))))
   }
 
-  "combine of some leaf list " should "" in {
+  "method combine " should " allow combine Lists of Forks, leaves, List of leaf, as a element, to make up the return List" in {
     val leaflist = List(Leaf('e', 1), Leaf('t', 2), Leaf('x', 4))
     assert(List(Fork(Leaf('e', 1), Leaf('t', 2), List('e', 't'), 3), Leaf('x', 4)) == combine(leaflist))
   }
 
-  "decode and encode a very short text should be identity " should "" in {
+  "decode and encode a very short text should be identity " should " pend to modify this sentence !!!!!!!!!" in {
     assert("ab".toList == decode(t1, encode(t1)("ab".toList)))
   }
 
