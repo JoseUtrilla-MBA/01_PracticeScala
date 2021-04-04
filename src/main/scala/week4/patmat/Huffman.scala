@@ -166,9 +166,9 @@ trait Huffman extends HuffmanInterface {
   def decode(tree: CodeTree, bits: List[Bit]): List[Char] = {
     def createListChars(subTree: CodeTree, bits: List[Bit], chars: List[Char]): List[Char] = {
       subTree match {
-        case leaf: Leaf => createListChars(tree, bits, leaf.char :: chars)
+        case leaf: Leaf => createListChars(tree, bits, chars ::: List(leaf.char)  )
         case fork: Fork => {
-          if (bits.isEmpty) chars.reverse
+          if (bits.isEmpty) chars
           else bits.head match {
             case 0 => createListChars(fork.left, bits.tail, chars)
             case 1 => createListChars(fork.right, bits.tail, chars)
@@ -268,14 +268,28 @@ trait Huffman extends HuffmanInterface {
    * and then uses it to perform the actual encoding.
    */
   def quickEncode(tree: CodeTree)(text: List[Char]): List[Bit] = {
-    def createCodeBit(tableTree: CodeTable, codeBit: List[Bit]): List[Bit] = {
-      if (tableTree.isEmpty) codeBit
-      else createCodeBit(tableTree.tail, codeBit ::: codeBits(tableTree)(tableTree.head._1))
+    val tableTree = convert(tree)
+
+    def createCodeBit(text: List[Char], codeBit: List[Bit]): List[Bit] = {
+      if (text.isEmpty) codeBit
+      else createCodeBit(text.tail, codeBit ::: codeBits(tableTree)(text.head))
     }
 
-    createCodeBit(convert(tree), Nil)
+    createCodeBit(text, Nil)
   }
 
 }
 
 object Huffman extends Huffman
+
+object test extends App {
+  val finalResultDecode = Huffman.decodedSecret
+  println(finalResultDecode)
+  val finalResultEncode = Huffman.encode(Huffman.frenchCode)(finalResultDecode)
+  println(finalResultEncode)
+  println(finalResultEncode == Huffman.secret)
+  println(Huffman.convert(Huffman.frenchCode))
+  println(Huffman.quickEncode(Huffman.frenchCode)(finalResultDecode))
+  println(Huffman.quickEncode(Huffman.frenchCode)(finalResultDecode) == Huffman.secret)
+
+}
