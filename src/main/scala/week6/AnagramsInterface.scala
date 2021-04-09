@@ -1,4 +1,4 @@
-package week6
+package forcomp
 
 /**
  * The interface used by the grading infrastructure. Do not change signatures
