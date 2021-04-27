@@ -1,4 +1,4 @@
-package week2.funsets
+package week2
 
 
 import org.scalatest.{FlatSpec, Matchers}
